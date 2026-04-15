@@ -25,7 +25,7 @@ async def get_pool() -> asyncpg.Pool:
 
 
 SCHEMA_SQL = """
-CREATE TABLE IF NOT EXISTS sports (
+CREATE TABLE IF NOT EXISTS sport_types (
     key TEXT PRIMARY KEY,
     group_name TEXT,
     title TEXT,
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS sports (
 
 CREATE TABLE IF NOT EXISTS matches (
     id TEXT PRIMARY KEY,
-    sport_key TEXT REFERENCES sports(key),
+    sport_key TEXT REFERENCES sport_types(key),
     home_team TEXT NOT NULL,
     away_team TEXT NOT NULL,
     commence_time TIMESTAMPTZ NOT NULL,
