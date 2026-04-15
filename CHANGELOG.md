@@ -1,6 +1,9 @@
 # Changelog
 
 ## [2026-04-16]
+### 시간 표기 — 브라우저 로컬 시간
+- `Matches.tsx`, `Predictions.tsx`: 경기 시간을 KST 고정에서 **접속자 브라우저 로컬 시간**으로 변경 (`toLocaleString(undefined, ...)`)
+
 ### 경기 예측 UI 추가 (A+C 방식)
 - `frontend/src/pages/Predictions.tsx` 신규 생성 — 리그 선택 후 "예측 실행" 버튼으로 오늘 경기 홈승/무/원정승 확률 표 표시
 - `Layout.tsx` — 사이드바에 "경기 예측" 메뉴 추가 (Sparkles 아이콘)
