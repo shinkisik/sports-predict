@@ -3,10 +3,10 @@ import { BarChart3, Trophy, TrendingUp, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navItems = [
-  { to: "/", icon: BarChart3, label: "대시보드" },
-  { to: "/predictions", icon: Sparkles, label: "경기 예측" },
-  { to: "/matches", icon: Trophy, label: "경기 배당" },
-  { to: "/value-bets", icon: TrendingUp, label: "Value Bets" },
+  { to: "/", icon: BarChart3, label: "대시보드", end: true },
+  { to: "/predictions", icon: Sparkles, label: "경기 예측", end: false },
+  { to: "/matches", icon: Trophy, label: "경기 배당", end: false },
+  { to: "/value-bets", icon: TrendingUp, label: "Value Bets", end: false },
 ];
 
 export default function Layout() {
@@ -21,6 +21,7 @@ export default function Layout() {
           <NavLink
             key={item.to}
             to={item.to}
+            end={item.end}
             className={({ isActive }) =>
               cn(
                 "flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors",
