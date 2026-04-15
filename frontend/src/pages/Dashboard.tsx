@@ -30,7 +30,7 @@ export default function Dashboard() {
 
     // 오늘 예측 자동 로드
     setPredLoading(true);
-    api.get<{ predictions: Prediction[] }>("/predict/today/soccer_epl")
+    api.get<{ predictions: Prediction[] }>("/predictions/today/soccer_epl")
       .then((data) => setPredictions(data.predictions || []))
       .catch(() => {})
       .finally(() => setPredLoading(false));

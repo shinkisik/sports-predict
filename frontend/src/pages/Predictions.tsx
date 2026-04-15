@@ -57,7 +57,7 @@ export default function Predictions() {
     setStep("predicting");
     setMessage("예측 모델 실행 중...");
     try {
-      const data = await api.get<TodayResponse>(`/predict/today/${sport}`);
+      const data = await api.get<TodayResponse>(`/predictions/today/${sport}`);
       setPredictions(data.predictions || []);
       if ((data.predictions || []).length === 0) {
         setMessage("오늘 예정된 경기가 없거나 팀 통계 데이터가 부족합니다.");
