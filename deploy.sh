@@ -4,7 +4,7 @@ set -e
 echo "=== Sports Predict 배포 ==="
 
 TARGET=${1:-all}
-SERVER="cococoin-old"
+SERVER="cococoin"
 REMOTE_DIR="/opt/sports-predict"
 
 # 1. git push
@@ -30,7 +30,7 @@ fi
 # 4. 검증
 echo "→ 검증..."
 sleep 3
-ssh $SERVER "curl -s http://localhost:80/health"
+ssh $SERVER "curl -s http://localhost:8081/health"
 echo ""
 echo "→ HEAD: $(git rev-parse --short HEAD)"
 ssh $SERVER "cd $REMOTE_DIR && git rev-parse --short HEAD"
