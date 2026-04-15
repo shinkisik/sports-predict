@@ -94,7 +94,7 @@ function MatchCard({ match }: { match: OddsMatch }) {
           {match.home_team} <span className="text-gray-500 mx-2">vs</span> {match.away_team}
         </div>
         <span className="text-gray-500 text-sm">
-          {new Date(match.commence_time).toLocaleString("ko-KR")}
+          {new Date(match.commence_time).toLocaleString()}
         </span>
       </div>
 

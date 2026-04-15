@@ -186,10 +186,9 @@ export default function Predictions() {
 
 function formatTime(iso: string) {
   try {
-    return new Date(iso).toLocaleString("ko-KR", {
+    return new Date(iso).toLocaleString(undefined, {
       month: "2-digit", day: "2-digit",
       hour: "2-digit", minute: "2-digit",
-      timeZone: "Asia/Seoul",
     });
   } catch {
     return iso;
