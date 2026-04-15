@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import api from "@/lib/api";
 
 interface ValueBet {
   outcome: string;
@@ -18,7 +17,7 @@ interface Prediction {
 
 export default function Dashboard() {
   const [health, setHealth] = useState<string>("확인 중...");
-  const [predictions, setPredictions] = useState<Prediction[]>([]);
+  const [predictions] = useState<Prediction[]>([]);
 
   useEffect(() => {
     fetch("/health")
