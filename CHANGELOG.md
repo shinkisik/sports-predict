@@ -1,6 +1,12 @@
 # Changelog
 
 ## [2026-04-16]
+### 경기 예측 UI 추가 (A+C 방식)
+- `frontend/src/pages/Predictions.tsx` 신규 생성 — 리그 선택 후 "예측 실행" 버튼으로 오늘 경기 홈승/무/원정승 확률 표 표시
+- `Layout.tsx` — 사이드바에 "경기 예측" 메뉴 추가 (Sparkles 아이콘)
+- `App.tsx` — `/predictions` 라우트 추가
+- `Dashboard.tsx` — 대시보드 진입 시 EPL 오늘 경기 예측 자동 로드, 요약 카드 실시간 반영, "예측 페이지" 링크 추가
+
 ### 초기 배포
 - 프로젝트 서버 배포 완료 (`/opt/sports-predict` on Hetzner)
 - Docker Compose: sp-backend, sp-db (PostgreSQL 16), sp-redis (Redis 7), sp-nginx
