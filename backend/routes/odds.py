@@ -21,6 +21,12 @@ async def get_upcoming_odds(sport_key: str, regions: str = "eu,uk", markets: str
 
     pool = await get_pool()
     async with pool.acquire() as conn:
+        # 스포츠 키 등록
+        await conn.execute("""
+            INSERT INTO sport_types (key, group_name, title) VALUES ($1, $1, $1)
+            ON CONFLICT (key) DO NOTHING
+        """, sport_key)
+
         for match in data:
             # 경기 저장
             await conn.execute("""
