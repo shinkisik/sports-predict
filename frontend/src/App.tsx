@@ -3,6 +3,7 @@ import Layout from "./components/Layout";
 import Dashboard from "./pages/Dashboard";
 import Matches from "./pages/Matches";
 import ValueBets from "./pages/ValueBets";
+import Predictions from "./pages/Predictions";
 
 export default function App() {
   return (
@@ -10,6 +11,7 @@ export default function App() {
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Dashboard />} />
+          <Route path="/predictions" element={<Predictions />} />
           <Route path="/matches" element={<Matches />} />
           <Route path="/value-bets" element={<ValueBets />} />
         </Route>

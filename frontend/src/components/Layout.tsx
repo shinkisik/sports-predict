@@ -1,9 +1,10 @@
 import { Outlet, NavLink } from "react-router-dom";
-import { BarChart3, Trophy, TrendingUp } from "lucide-react";
+import { BarChart3, Trophy, TrendingUp, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navItems = [
   { to: "/", icon: BarChart3, label: "대시보드" },
+  { to: "/predictions", icon: Sparkles, label: "경기 예측" },
   { to: "/matches", icon: Trophy, label: "경기 배당" },
   { to: "/value-bets", icon: TrendingUp, label: "Value Bets" },
 ];
