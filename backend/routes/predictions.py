@@ -17,11 +17,22 @@ async def predict_match(match_id: str):
             return {"error": "경기를 찾을 수 없습니다"}
 
         home_stats = await conn.fetchrow(
-            "SELECT * FROM team_stats WHERE team_name = $1", match["home_team"]
+            "SELECT * FROM team_stats WHERE team_name = $1 AND sport_key = $2",
+            match["home_team"], match["sport_key"]
         )
         away_stats = await conn.fetchrow(
-            "SELECT * FROM team_stats WHERE team_name = $1", match["away_team"]
+            "SELECT * FROM team_stats WHERE team_name = $1 AND sport_key = $2",
+            match["away_team"], match["sport_key"]
         )
+        # sport_key 매칭 실패 시 team_name만으로 fallback
+        if not home_stats:
+            home_stats = await conn.fetchrow(
+                "SELECT * FROM team_stats WHERE team_name = $1", match["home_team"]
+            )
+        if not away_stats:
+            away_stats = await conn.fetchrow(
+                "SELECT * FROM team_stats WHERE team_name = $1", match["away_team"]
+            )
 
         if not home_stats or not away_stats:
             return {"error": "팀 통계 데이터가 부족합니다. 먼저 /api/stats/sync를 실행하세요"}

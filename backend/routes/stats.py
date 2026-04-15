@@ -21,10 +21,19 @@ async def get_team_stats(team_name: str, sport_key: str = "soccer_epl"):
     return {"error": "팀을 찾을 수 없습니다"}
 
 
+LEAGUE_SPORT_KEY = {
+    39: "soccer_epl",
+    78: "soccer_germany_bundesliga",
+    140: "soccer_spain_la_liga",
+    135: "soccer_italy_serie_a",
+    61: "soccer_france_ligue_1",
+}
+
 @router.post("/sync/{league_id}")
-async def sync_league_stats(league_id: int, season: int = 2025):
+async def sync_league_stats(league_id: int, season: int = 2024):
     """리그 팀 통계 동기화 (API-Football → DB)"""
     standings = await client.get_standings(league_id, season)
+    sport_key = LEAGUE_SPORT_KEY.get(league_id, f"soccer_league_{league_id}")
 
     pool = await get_pool()
     async with pool.acquire() as conn:
@@ -42,7 +51,7 @@ async def sync_league_stats(league_id: int, season: int = 2025):
                     avg_goals_scored = $3, avg_goals_conceded = $4, recent_form = $5, last_updated = now()
             """,
                 team.get("name", ""),
-                f"soccer_league_{league_id}",
+                sport_key,
                 (goals.get("for", 0) or 0) / played,
                 (goals.get("against", 0) or 0) / played,
                 team_data.get("form", ""),
